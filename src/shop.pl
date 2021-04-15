@@ -337,7 +337,7 @@ shelf_facings_mark_dirty(ShelfLayer) :-
   findall(X, (
     shelf_facing(ShelfLayer,X),
     shelf_facing_update(X)
-  ), AllFacings),
+  ), _),
   marker_plugin:republish.
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
@@ -1462,7 +1462,7 @@ assert_layer_id(Shelf) :-
   findall([Z, Layer],
         (
         triple(Shelf, soma:hasPhysicalComponent, Layer),
-        is_at(Layer, ['map', [X1,Y,Z], _]),
+        is_at(Layer, ['map', [_,_,Z], _]),
         assert_facing_id(Layer)
         ),
         Layers),
@@ -1478,7 +1478,7 @@ assert_layer_id(Shelf) :-
 assert_facing_id(Layer) :-
   findall([Y, F],
           (triple(F, shop:layerOfFacing, Layer),
-          is_at(F, ['map', [X,Y,Z], _])),
+          is_at(F, ['map', [_,Y,_], _])),
           Facings),
   sort(Facings, SortedFacings),
   forall(
@@ -1488,6 +1488,6 @@ assert_facing_id(Layer) :-
     tell(holds(F, shop:erpFacingId, Id)))
   ).
 
-get_number_of_items_in_facing(Facing, Quantity) :-
-  triple(F, shop:layerOfFacing, Layer),
+get_number_of_items_in_facing(_, Quantity) :-
+  triple(F, shop:layerOfFacing, _),
   aggregate_all(count, triple(F, 'http://knowrob.org/kb/shop.owl#productInFacing',_) , Quantity).

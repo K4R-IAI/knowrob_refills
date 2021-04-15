@@ -1488,6 +1488,6 @@ assert_facing_id(Layer) :-
     tell(holds(F, shop:erpFacingId, Id)))
   ).
 
-get_number_of_items_in_facing(_, Quantity) :-
-  triple(F, shop:layerOfFacing, _),
-  aggregate_all(count, triple(F, 'http://knowrob.org/kb/shop.owl#productInFacing',_) , Quantity).
+get_number_of_items_in_facing(Facing, Quantity) :-
+  triple(Facing, shop:layerOfFacing, _),
+  aggregate_all(count, triple(Facing, 'http://knowrob.org/kb/shop.owl#productInFacing',_) , Quantity).

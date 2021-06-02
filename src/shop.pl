@@ -68,7 +68,7 @@
       %%%%% rooming in
       belief_shelf_left_marker_at(r,r,r),
       belief_shelf_right_marker_at(r,r,r),
-      belief_shelf_at(r,r,r),
+      belief_shelf_at(r,r,r,r),
       shelf_classify(r,+,+,+),
       shelf_with_marker(r,r),
       marker_tag_to_erp_id(r,r),

@@ -598,12 +598,17 @@ shelf_facing_product_type(Facing, _) :-
   fail.
 
 compute_shelf_facing_product_type(Facing, ProductType) :-
+  ground(Facing),
   comp_preferredLabelOfFacing(Facing,Label),
   holds(Label,shop:articleNumberOfLabel,ArticleNumber),
-  subclass_of(ProductType, shop:'Product'),
+  is_restriction(R,value(shop:articleNumberOfProduct,ArticleNumber)),
   subclass_of(ProductType, R),
-  has_description(R,value(shop:articleNumberOfProduct,ArticleNumber)), !,
+  subclass_of(ProductType, shop:'Product'),
   tell(triple(Facing, shop:productLabelOfFacing, ProductType)).
+
+compute_shelf_facing_product_type(_,_) :-
+  print_message(info, 'Assign a value to the Facing variable. compute_shelf_facing_product_type 
+                        predicate requires a suitable facing value').
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
@@ -762,7 +767,7 @@ comp_facingHeight(Facing, Value) :-
     Distance is abs(X_Pos-Y_Pos)) ; (
     % no layer above
     object_dimensions(ShelfFrame, _, _, Frame_H),
-    Distance is 0.5*Frame_H - X_Pos
+    Distance is 0.5*Frame_H - X_Pos %%% Thr calculation is not right and it is Value and not Distance
   )),
   % compute available space for this facing
   ( shelf_layer_standing(LayerAbove) -> % FIXME could be unbound
@@ -1458,6 +1463,10 @@ assert_shelf_parts_erp_id(Shelf) :-
 
 assert_shelf_parts_erp_id(Shelf) :-
   assert_layer_id(Shelf).
+
+assert_layer_id(Shelf) :-
+  \+ triple(Shelf, soma:hasPhysicalComponent, _),
+  print_message(info, 'Shelf has no layers').
 
 assert_layer_id(Shelf) :-
   findall([Z, Layer],

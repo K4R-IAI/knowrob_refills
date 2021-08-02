@@ -92,7 +92,8 @@
       product_dimensions(r,r),
       retract_shelf(r),
       assert_layer_id(r),
-      assert_facing_id(r)
+      assert_facing_id(r),
+      assert_shelves_parts_erp_id
       ]).
 
 :- use_module(library('semweb/rdf_db')).

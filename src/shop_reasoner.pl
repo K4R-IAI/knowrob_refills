@@ -50,7 +50,7 @@
 % @param Shelves - Shelves from the scanned store
 %
 get_all_shelves(Shelves) :-
-    findall(Shelf,
+    setof(Shelf,
         (
             has_type(Shelf, dmshop:'DMShelfFrame')
         ), 

@@ -45,6 +45,9 @@
     get_product_gtin_dan(r, -, -)
     ]).
 
+:- use_module(library('semweb/rdf_db'),
+	[ rdf_split_url/3 ]).
+
 %% get_all_shelves(?Shelves) is det.
 %
 % Gives all the shelves from the scanned store data.
@@ -120,7 +123,13 @@ get_number_of_items_in_facing(Facing, Quantity) :-
 % @param Translation - X, Y, Z position
 % @param Rotation - X, Y, Z, W quaternion
 %
-get_pose_in_desired_reference_frame(Object, FrameName, Translation, Rotation) :-
+
+get_pose_in_desired_reference_frame(Object, Frame, Translation, Rotation) :-
+    \+ ground(Frame), !,
+    is_at(Object, ['map', Translation, Rotation]).
+
+get_pose_in_desired_reference_frame(Object, Frame, Translation, Rotation) :-
+    rdf_split_url(_, FrameName, Frame),
     is_at(Object, [FrameName, Translation, Rotation]).
 
 get_pose_in_desired_reference_frame(Object, FrameName, Translation, Rotation) :-

@@ -40,7 +40,9 @@
     get_number_of_items_in_facing(r, -),
     get_pose_in_desired_reference_frame(r,r, -,-),
     get_model_path(r, -),
-    get_product_location(r, -,-,-,-)
+    get_product_location(r, -,-,-,-),
+    get_item_type(r, -),
+    get_product_gtin_dan(r, -, -)
     ]).
 
 %% get_all_shelves(?Shelves) is det.
@@ -64,13 +66,13 @@ get_all_shelves(Shelves) :-
 % @param Layers - Shelf layers of the shelf 
 %
 get_layers_in_shelf(Shelf, Layers) :-
-    findall(Layer,
+    setof(Layer,
         (triple(Shelf, soma:hasPhysicalComponent, Layer)),
         Layers).
 
 
 get_facings_in_layer(Layer, Facings) :-
-    findall(Facing,
+    setof(Facing,
         (triple(Facing, shop:layerOfFacing, Layer)),
         Facings).
 
@@ -82,7 +84,7 @@ get_facings_in_layer(Layer, Facings) :-
 % @param Items - Items present in the facing
 %
 get_all_items_in_facing(Facing, Items) :-
-    findall(Item, 
+    setof(Item,
             (
                 triple(Facing, rdf:type, shop:'ProductFacingStanding'),
                 triple(Facing, shop:productInFacing, Item)
@@ -106,8 +108,8 @@ get_dimensions(Object, Depth, Width, Height) :-
 % @param Quantity - Number of items in the facing
 %
 get_number_of_items_in_facing(Facing, Quantity) :-
-    triple(F, shop:layerOfFacing, Layer),
-    aggregate_all(count, triple(F, 'http://knowrob.org/kb/shop.owl#productInFacing',_) , Quantity).
+    triple(Facing, shop:layerOfFacing, Layer),
+    aggregate_all(count, triple(Facing, 'http://knowrob.org/kb/shop.owl#productInFacing',_) , Quantity), !.
 
 %% get_pose_in_desired_reference_frame(?Object, ?FrameName, ?Translation, ?Rotation)
 %
@@ -148,3 +150,20 @@ get_product_location(ProductType, Item, Shelf, ShelfLayer, Facing) :-
     triple(Facing ,shop:productInFacing, Item),
     triple(Facing, shop:layerOfFacing, Layer),
     triple(Shelf, soma:hasPhysicalComponent, Layer).
+
+%% get_item_type(?Item, ?Type)
+%
+% Gives the item type.
+%
+get_item_type(Item, Type) :-
+    has_type(Item, Type).
+
+%% get_product_gtin_dan(?Product, ?Gtin, ?Dan)
+%
+% Gives the product article number in terms of both Gtin and Dan.
+%
+get_product_gtin_dan(Product, Gtin, Dan) :-
+    subclass_of(Product, Desc),
+    has_description(Desc,value(shop:articleNumberOfProduct,ArticleNumber)),
+    triple(ArticleNumber, shop:dan, Dan),
+    triple(ArticleNumber, shop:gtin, Gtin).

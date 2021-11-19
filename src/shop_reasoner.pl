@@ -42,7 +42,8 @@
     get_model_path(r, -),
     get_product_location(r, -,-,-,-),
     get_item_type(r, -),
-    get_product_gtin_dan(r, -, -)
+    get_product_gtin(r, -),
+    get_product_dan(r, -)
     ]).
 
 :- use_module(library('semweb/rdf_db'),
@@ -167,12 +168,16 @@ get_product_location(ProductType, Item, Shelf, ShelfLayer, Facing) :-
 get_item_type(Item, Type) :-
     has_type(Item, Type).
 
-%% get_product_gtin_dan(?Product, ?Gtin, ?Dan)
+%% get_product_gtin_dan(?Product, ?Gtin)
 %
-% Gives the product article number in terms of both Gtin and Dan.
+% Gives the product article number in terms of Gtin
 %
-get_product_gtin_dan(Product, Gtin, Dan) :-
+get_product_gtin(Product, Gtin) :-
     subclass_of(Product, Desc),
     has_description(Desc,value(shop:articleNumberOfProduct,ArticleNumber)),
-    triple(ArticleNumber, shop:dan, Dan),
     triple(ArticleNumber, shop:gtin, Gtin).
+
+get_product_dan(Product, Dan) :-
+    subclass_of(Product, Desc),
+    has_description(Desc,value(shop:articleNumberOfProduct,ArticleNumber)),
+    triple(ArticleNumber, shop:dan, Dan).

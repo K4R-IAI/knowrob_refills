@@ -65,7 +65,6 @@
 :- rdf_db:rdf_register_ns(shop, 'http://knowrob.org/kb/shop.owl#', [keep(true)]).
 %% :- tripledb_load('package://knowrob_refills/owl/shop-test.owl', 
 %%   [namespace(shoptest,'http://knowrob.org/kb/shop-test.owl#')] ).
-:- tripledb_load('package://knowrob_refills/owl/product-catalog.owl').
 
 :- use_module(library('shop')).
 

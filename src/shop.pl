@@ -88,6 +88,7 @@
       create_article_type(r,r,r),
       create_article_number(r,r,r),
       create_article_number(r,r),
+      create_store(r,-),
       article_number_of_dan(r,r),
       product_dimensions(r,r),
       retract_shelf(r),
@@ -910,6 +911,10 @@ belief_shelf_right_marker_at(Pose,MarkerId,Marker):-
   rdf_equal(MarkerType,dmshop:'DMShelfMarkerRight'),
   belief_shelf_marker_at(MarkerType,MarkerId,Pose,Marker).
 
+create_store(StoreId, Store) :-
+  tell([instance_of(Store, shop:'Shop'),
+      triple(Store, shop:hasShopId, StoreId)
+  ]).
 %%
 %
 belief_shelf_at(LeftMarkerId,RightMarkerId,Shelf, Shop) :-
@@ -1498,3 +1503,4 @@ assert_facing_id(Layer) :-
     nth1(Id, SortedFacings, [Y, F]),
     tell(holds(F, shop:erpFacingId, Id)))
   ).
+

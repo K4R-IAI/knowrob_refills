@@ -1,2 +1,2 @@
-# kowrob_refills
-Knowledge for robotic shop assistants (REFILLS)
+# kowrob_stocktaking
+Knowledge for robotic shop assistants 

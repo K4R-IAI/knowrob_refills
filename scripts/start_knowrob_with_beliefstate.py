@@ -2,7 +2,7 @@
 
 import rospy
 
-from knowrob_refills.knowrob_wrapper import KnowRob
+from knowrob_stocktaking.knowrob_wrapper import KnowRob
 # from refills_perception_interface.tfwrapper import lookup_pose
 
 db = '~/mongo_logs/whole_store_filled_neem/'

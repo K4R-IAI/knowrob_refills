@@ -5,7 +5,7 @@ import os.path
 from giskardpy import tfwrapper as tf
 from giskardpy.urdf_object import URDFObject
 from giskardpy.utils import resolve_ros_iris
-from knowrob_refills.knowrob_wrapper import KnowRob
+from knowrob_stocktaking.knowrob_wrapper import KnowRob
 
 rospy.init_node('neem_as_urdf_exporter')
 tf.init(5)

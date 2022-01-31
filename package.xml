@@ -1,7 +1,7 @@
 <package>
-  <name>knowrob_refills</name>
+  <name>knowrob_stocktaking</name>
   <version>0.1.0</version>
-  <description>knowrob_refills
+  <description>knowrob_stocktaking
 
      Ontologies, definitions and computables for the integration of the
      KnowRob knowledge base and the CRAM plan-based executive.</description>
@@ -9,7 +9,7 @@
 
   <license>BSD</license>
 
-  <url type="website">http://ros.org/wiki/knowrob_refills</url>
+  <url type="website">http://ros.org/wiki/knowrob_stocktaking</url>
 
   <author email="danielb@cs.uni-bremen.de">Daniel Beler</author>
 

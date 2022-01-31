@@ -1,9 +1,9 @@
 :- begin_tests(refills).
 
-:- register_ros_package(knowrob_refills).
+:- register_ros_package(knowrob_stocktaking).
 
-:- beliefstate:belief_parse('package://knowrob_refills/owl/shop-test.owl').
-:- owl_parser:owl_parse('package://knowrob_refills/owl/product-catalog.owl').
+:- beliefstate:belief_parse('package://knowrob_stocktaking/owl/shop-test.owl').
+:- owl_parser:owl_parse('package://knowrob_stocktaking/owl/product-catalog.owl').
 
 :- use_module(library('shop')).
 :- use_module(library('refills')).

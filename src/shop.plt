@@ -12,7 +12,7 @@
       'http://www.ease-crc.org/ont/SOMA.owl#')
     ]).
 
-:- tripledb_load('package://knowrob_refills/owl/shop-test.owl', 
+:- tripledb_load('package://knowrob_stocktaking/owl/shop-test.owl', 
   [namespace(shoptest,'http://knowrob.org/kb/shop-test.owl#')] ).
 
 

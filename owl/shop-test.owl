@@ -16,7 +16,7 @@
      xmlns:iai-dm-market="http://knowrob.org/kb/iai-dm-market.owl#"
      xmlns:knowrob_assembly="http://knowrob.org/kb/knowrob_assembly.owl#">
     <owl:Ontology rdf:about="http://knowrob.org/kb/shop-test.owl">
-        <owl:imports rdf:resource="package://knowrob_refills/owl/dm-market.owl"/>
+        <owl:imports rdf:resource="package://knowrob_stocktaking/owl/dm-market.owl"/>
     </owl:Ontology>
     
 

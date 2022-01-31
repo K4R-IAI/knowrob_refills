@@ -2,20 +2,20 @@
   <arg name="num_pl_threads" default="2" />
   <arg name="num_ros_threads" default="4" />
   <!-- <arg name="mongodb_name" default="roslog" /> -->
-  <arg name="knowrob_settings" default="$(find knowrob_refills)/settings/default.pl" />  
+  <arg name="knowrob_settings" default="$(find knowrob_stocktaking)/settings/default.pl" />  
   <env name="KNOWROB_SETTINGS" value="$(arg knowrob_settings)" /> 
   <!-- <env name="KNOWROB_MONGO_DB_NAME" value="$(arg mongodb_name)" /> -->
   
-  <param name="initial_package" type="string" value="knowrob_refills" />
+  <param name="initial_package" type="string" value="knowrob_stocktaking" />
 
   <include file="$(find rosprolog)/launch/rosprolog.launch">
-    <arg name="initial_package" default="knowrob_refills" />
+    <arg name="initial_package" default="knowrob_stocktaking" />
     <arg name="initial_goal" default="register_ros_package(knowrob)" />
   </include>
  
  <!-- TODO: Dependency to robosherlock package should be added as the robosherlock_knowrob is deprecated and the owl and prolog folder is moved to main robosherlock -->
   <!-- <param name="initial_goal" type="string" value="register_ros_package(robosherlock_knowrob),
-  owl_parser:owl_parse('package://knowrob_refills/owl/iai-shop.owl'),owl_parser:owl_parse('package://knowrob_refills/owl/product-catalog.owl')" /> -->
+  owl_parser:owl_parse('package://knowrob_stocktaking/owl/iai-shop.owl'),owl_parser:owl_parse('package://knowrob_stocktaking/owl/product-catalog.owl')" /> -->
 
 <!--
   <node name="json_prolog" pkg="json_prolog" type="json_prolog_node" output="screen"/>

@@ -350,8 +350,8 @@ def main(argv):
   resourceManager = OWLResourceManager(ontologyPrefix='shop', \
                                        ontologyURI='http://knowrob.org/kb/shop.owl',\
                                        baseClass='Product')
-  resourceManager.add_import('package://knowrob_refills/owl/shop.owl')
-  resourceManager.add_import('package://knowrob_refills/owl/dm-market.owl')
+  resourceManager.add_import('package://knowrob_stocktaking/owl/shop.owl')
+  resourceManager.add_import('package://knowrob_stocktaking/owl/dm-market.owl')
   resourceManager.add_class_mapping(SHOP_CLASS_REPLACEMENT)
   resourceManager.add_subclass_mapping(SHOP_SUBCLASS_MAPPING)
   

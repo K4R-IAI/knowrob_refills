@@ -29,7 +29,7 @@
 */
 
 :- register_ros_package(knowrob).
-:- register_ros_package(knowrob_refills).
+:- register_ros_package(knowrob_stocktaking).
 
 :- use_module(library('shop')).
 :- use_module(library('refills')).
@@ -40,13 +40,13 @@
               [tripledb_load/2, tripledb_load/1]).
 
 :- tripledb_load(
-    'package://knowrob_refills/owl/shop.owl',
+    'package://knowrob_stocktaking/owl/shop.owl',
     [ namespace(shop, 
       'http://knowrob.org/kb/shop.owl#')
     ]).
 
 :- tripledb_load(
-    'package://knowrob_refills/owl/dm-market.owl',
+    'package://knowrob_stocktaking/owl/dm-market.owl',
     [ namespace(dmshop, 
       'http://knowrob.org/kb/dm-market.owl#')
     ]).
@@ -58,7 +58,7 @@
 %     ]).
 
 
-:- tripledb_load('package://knowrob_refills/owl/product-catalog.owl').
-:- tripledb_load('package://knowrob_refills/owl/product-taxonomy.owl').
+:- tripledb_load('package://knowrob_stocktaking/owl/product-catalog.owl').
+:- tripledb_load('package://knowrob_stocktaking/owl/product-taxonomy.owl').
 :- use_module(library('ros/marker/marker_plugin')).
 :- use_module(library('ros/tf/tf_plugin')).

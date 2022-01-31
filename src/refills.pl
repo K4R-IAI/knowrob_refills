@@ -63,7 +63,7 @@
 :- rdf_db:rdf_register_ns(knowrob, 'http://knowrob.org/kb/knowrob.owl#', [keep(true)]).
 :- rdf_db:rdf_register_ns(xsd, 'http://www.w3.org/2001/XMLSchema#', [keep(true)]).
 :- rdf_db:rdf_register_ns(shop, 'http://knowrob.org/kb/shop.owl#', [keep(true)]).
-%% :- tripledb_load('package://knowrob_refills/owl/shop-test.owl', 
+%% :- tripledb_load('package://knowrob_stocktaking/owl/shop-test.owl', 
 %%   [namespace(shoptest,'http://knowrob.org/kb/shop-test.owl#')] ).
 
 :- use_module(library('shop')).
@@ -141,7 +141,7 @@ shelf_floor_type_(FrameType,Type) :-
   rdf_equal(Type,dmshop:'DMFloorT6W120'),!.
 
 %refills_init_iai_shop :-
-  %tripledb_load('package://knowrob_refills/owl/dm-market-iai.owl').
+  %tripledb_load('package://knowrob_stocktaking/owl/dm-market-iai.owl').
 
 refills_init_test_shop :-
   refills_spawn_facings.
@@ -329,7 +329,7 @@ refills_test_spawning(Shelf,Data) :-
   
 :- begin_tripledb_tests(
     'refills',
-    'package://knowrob_refills/owl/shop.owl',
+    'package://knowrob_stocktaking/owl/shop.owl',
     [ namespace('http://knowrob.org/kb/shop.owl#')
     ]).
 

@@ -1063,7 +1063,7 @@ class KnowRob(object):
     # initialize
     def neem_init(self, robot_iri, store_iri):
         q = 'tf_logger_enable,' \
-            'tripledb_load(\'package://knowrob_refills/owl/iai-shop.owl\'),' \
+            'tripledb_load(\'package://knowrob_stocktaking/owl/iai-shop.owl\'),' \
             'tripledb_load(\'package://knowrob/owl/robots/IIWA.owl\'),' \
             'urdf_load(\'{0}\', \'package://knowrob/urdf/iiwa.urdf\', [load_rdf]),' \
             'tell([is_episode(Episode),' \

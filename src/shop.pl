@@ -913,7 +913,7 @@ belief_shelf_right_marker_at(Pose,MarkerId,Marker):-
 
 create_store(StoreId, Store) :-
   tell([instance_of(Store, shop:'Shop'),
-      triple(Store, shop:hasShopId, StoreId)
+      triple(Store, shop:hasShopNumber, StoreId)
   ]).
 %%
 %

@@ -161,6 +161,17 @@ get_product_location(ProductType, Item, Shelf, ShelfLayer, Facing) :-
     triple(Facing, shop:layerOfFacing, Layer),
     triple(Shelf, soma:hasPhysicalComponent, Layer).
 
+%% get_all_item_location(?Location)
+%
+% Gives the location of all the item instances of any product type from the scanned data
+%
+get_all_item_location(Location) :-
+    findall([Item, ['map',T, R]],
+        (triple(Facing, shop:productInFacing, Item),
+        is_at(Item, ['map', T, R])),
+    Location).
+    
+
 %% get_item_type(?Item, ?Type)
 %
 % Gives the item type.

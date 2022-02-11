@@ -274,7 +274,7 @@
     <owl:ObjectProperty rdf:about="http://knowrob.org/kb/shop.owl#hasAddress">
         <rdfs:subPropertyOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#hasLocation"/>
         <rdfs:domain rdf:resource="http://www.ease-crc.org/ont/SOMA.owl#Building"/>
-        <rdfs:range rdf:resource="http://knowrob.org/kb/shop.owl#AddressRegion"/>
+        <rdfs:range rdf:resource="http://knowrob.org/kb/shop.owl#Address"/>
     </owl:ObjectProperty>
     
 
@@ -528,6 +528,12 @@
     
 
 
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#hasRegion -->
+
+    <owl:ObjectProperty rdf:about="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#hasRegion"/>
+    
+
+
     <!-- http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#isRegionFor -->
 
     <owl:ObjectProperty rdf:about="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#isRegionFor"/>
@@ -617,6 +623,17 @@
     
 
 
+    <!-- http://knowrob.org/kb/shop.owl#hasAddressValue -->
+
+    <owl:DatatypeProperty rdf:about="http://knowrob.org/kb/shop.owl#hasAddressValue">
+        <rdfs:subPropertyOf rdf:resource="http://www.ease-crc.org/ont/SOMA.owl#hasSpaceParameter"/>
+        <rdfs:domain rdf:resource="http://knowrob.org/kb/shop.owl#Address"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The address value takes the form [StreetName, Number, Postcode, Other]</rdfs:comment>
+    </owl:DatatypeProperty>
+    
+
+
     <!-- http://knowrob.org/kb/shop.owl#hasCity -->
 
     <owl:DatatypeProperty rdf:about="http://knowrob.org/kb/shop.owl#hasCity">
@@ -653,6 +670,7 @@
         <rdfs:subPropertyOf rdf:resource="http://www.ease-crc.org/ont/SOMA.owl#hasSpaceParameter"/>
         <rdfs:domain rdf:resource="http://knowrob.org/kb/shop.owl#GeometricCoordinates"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Geometric coordiantes comprises of the latitude and longitude of a building</rdfs:comment>
     </owl:DatatypeProperty>
     
 
@@ -835,6 +853,12 @@
 
     <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#Address">
         <rdfs:subClassOf rdf:resource="http://www.ease-crc.org/ont/SOMA.owl#Localization"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#hasRegion"/>
+                <owl:allValuesFrom rdf:resource="http://knowrob.org/kb/shop.owl#AddressRegion"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 

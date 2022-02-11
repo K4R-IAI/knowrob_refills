@@ -43,7 +43,8 @@
     get_product_location(r, -,-,-,-),
     get_item_type(r, -),
     get_product_gtin(r, -),
-    get_product_dan(r, -)
+    get_product_dan(r, -),
+    get_all_item_location(-)
     ]).
 
 :- use_module(library('semweb/rdf_db'),

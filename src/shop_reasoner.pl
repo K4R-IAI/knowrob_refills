@@ -1,5 +1,4 @@
-/**  <module> shop_reasoner
-
+/* <module> shop_reasoner
   Copyright (C) 2021 Kaviya Dhanabalachandran
   All rights reserved.
 
@@ -113,7 +112,7 @@ get_dimensions(Object, Depth, Width, Height) :-
 % @param Quantity - Number of items in the facing
 %
 get_number_of_items_in_facing(Facing, Quantity) :-
-    triple(Facing, shop:layerOfFacing, Layer),
+    triple(Facing, shop:layerOfFacing, _),
     aggregate_all(count, triple(Facing, 'http://knowrob.org/kb/shop.owl#productInFacing',_) , Quantity), !.
 
 %% get_pose_in_desired_reference_frame(?Object, ?FrameName, ?Translation, ?Rotation)
@@ -155,12 +154,11 @@ get_model_path(Object, Path) :-
 % Location of the item is given in terms of shelf, shelf layer and facing
 %
 get_product_location(ProductType, Item, Shelf, ShelfLayer, Facing) :-
-    WorldFrame = 'map',
     subclass_of(Product, ProductType), 
     has_type(Item, Product), 
     triple(Facing ,shop:productInFacing, Item),
-    triple(Facing, shop:layerOfFacing, Layer),
-    triple(Shelf, soma:hasPhysicalComponent, Layer).
+    triple(Facing, shop:layerOfFacing, ShelfLayer),
+    triple(Shelf, soma:hasPhysicalComponent, ShelfLayer).
 
 %% get_all_item_location(?Location)
 %

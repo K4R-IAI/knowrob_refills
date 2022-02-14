@@ -1,13 +1,12 @@
-:- begin_tests(refills).
-
-:- register_ros_package(knowrob_stocktaking).
-
-:- beliefstate:belief_parse('package://knowrob_stocktaking/owl/shop-test.owl').
-:- owl_parser:owl_parse('package://knowrob_stocktaking/owl/product-catalog.owl').
 
 :- use_module(library('shop')).
 :- use_module(library('refills')).
 :- use_module(library(statistics)).
+
+:- tripledb_load('package://knowrob_stocktaking/owl/shop-test.owl').
+:- tripledb_load('package://knowrob_stocktaking/owl/product-catalog.owl').
+
+:- begin_tests(refills).
 
 frame1('http://knowrob.org/kb/shop-test.owl#DMShelfFrameFrontStore_5gKS').
 frame2('http://knowrob.org/kb/shop-test.owl#DMShelfFrameFrontStore_Bnc8').

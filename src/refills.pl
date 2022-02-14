@@ -63,8 +63,7 @@
 :- rdf_db:rdf_register_ns(knowrob, 'http://knowrob.org/kb/knowrob.owl#', [keep(true)]).
 :- rdf_db:rdf_register_ns(xsd, 'http://www.w3.org/2001/XMLSchema#', [keep(true)]).
 :- rdf_db:rdf_register_ns(shop, 'http://knowrob.org/kb/shop.owl#', [keep(true)]).
-%% :- tripledb_load('package://knowrob_stocktaking/owl/shop-test.owl', 
-%%   [namespace(shoptest,'http://knowrob.org/kb/shop-test.owl#')] ).
+
 
 :- use_module(library('shop')).
 

@@ -627,7 +627,7 @@
 
     <owl:DatatypeProperty rdf:about="http://knowrob.org/kb/shop.owl#hasAddressValue">
         <rdfs:subPropertyOf rdf:resource="http://www.ease-crc.org/ont/SOMA.owl#hasSpaceParameter"/>
-        <rdfs:domain rdf:resource="http://knowrob.org/kb/shop.owl#Address"/>
+        <rdfs:domain rdf:resource="http://knowrob.org/kb/shop.owl#AddressRegion"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The address value takes the form [StreetName, Number, Postcode, Other]</rdfs:comment>
     </owl:DatatypeProperty>
@@ -668,7 +668,7 @@
 
     <owl:DatatypeProperty rdf:about="http://knowrob.org/kb/shop.owl#hasGeometricCoordinateValue">
         <rdfs:subPropertyOf rdf:resource="http://www.ease-crc.org/ont/SOMA.owl#hasSpaceParameter"/>
-        <rdfs:domain rdf:resource="http://knowrob.org/kb/shop.owl#GeometricCoordinates"/>
+        <rdfs:domain rdf:resource="http://knowrob.org/kb/shop.owl#GeometricCoordinate"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Geometric coordiantes comprises of the latitude and longitude of a building</rdfs:comment>
     </owl:DatatypeProperty>
@@ -698,6 +698,7 @@
 
     <owl:DatatypeProperty rdf:about="http://knowrob.org/kb/shop.owl#hasShopName">
         <rdfs:subPropertyOf rdf:resource="http://knowrob.org/kb/shop.owl#shopParameter"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.ease-crc.org/ont/SOMA.owl#hasNameString"/>
         <rdfs:domain rdf:resource="http://knowrob.org/kb/shop.owl#Shop"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
     </owl:DatatypeProperty>
@@ -808,6 +809,12 @@
     
 
 
+    <!-- http://www.ease-crc.org/ont/SOMA.owl#hasNameString -->
+
+    <owl:DatatypeProperty rdf:about="http://www.ease-crc.org/ont/SOMA.owl#hasNameString"/>
+    
+
+
     <!-- http://www.ease-crc.org/ont/SOMA.owl#hasSpaceParameter -->
 
     <owl:DatatypeProperty rdf:about="http://www.ease-crc.org/ont/SOMA.owl#hasSpaceParameter"/>
@@ -867,6 +874,12 @@
 
     <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#AddressRegion">
         <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#SpaceRegion"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#isRegionFor"/>
+                <owl:allValuesFrom rdf:resource="http://knowrob.org/kb/shop.owl#Address"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -1191,6 +1204,14 @@
     
 
 
+    <!-- http://knowrob.org/kb/shop.owl#GeometricCoordinate -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#GeometricCoordinate">
+        <rdfs:subClassOf rdf:resource="http://www.ease-crc.org/ont/SOMA.owl#Localization"/>
+    </owl:Class>
+    
+
+
     <!-- http://knowrob.org/kb/shop.owl#GeometricCoordinateRegion -->
 
     <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#GeometricCoordinateRegion">
@@ -1198,17 +1219,9 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#isRegionFor"/>
-                <owl:allValuesFrom rdf:resource="http://knowrob.org/kb/shop.owl#GeometricCoordinates"/>
+                <owl:allValuesFrom rdf:resource="http://knowrob.org/kb/shop.owl#GeometricCoordinate"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-    </owl:Class>
-    
-
-
-    <!-- http://knowrob.org/kb/shop.owl#GeometricCoordinates -->
-
-    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#GeometricCoordinates">
-        <rdfs:subClassOf rdf:resource="http://www.ease-crc.org/ont/SOMA.owl#Localization"/>
     </owl:Class>
     
 

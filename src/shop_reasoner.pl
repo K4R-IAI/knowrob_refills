@@ -43,7 +43,8 @@
     get_item_type(r, -),
     get_product_gtin(r, -),
     get_product_dan(r, -),
-    get_all_item_location(-)
+    get_all_item_location(-),
+    get_product_type(r, -)
     ]).
 
 :- use_module(library('semweb/rdf_db'),
@@ -191,3 +192,10 @@ get_product_dan(Product, Dan) :-
     subclass_of(Product, Desc),
     has_description(Desc,value(shop:articleNumberOfProduct,ArticleNumber)),
     triple(ArticleNumber, shop:dan, Dan).
+
+get_product_type(Gtin, ProductType) :-
+    triple(ArticleNumber, shop:gtin, Gtin),
+    has_type(Desc, owl:'Restriction'),
+    has_description(Desc,value(shop:articleNumberOfProduct,ArticleNumber)),
+    subclass_of(ProductType, Desc),
+    subclass_of(ProductType, shop:'Product').

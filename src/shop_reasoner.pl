@@ -44,7 +44,8 @@
     get_product_gtin(r, -),
     get_product_dan(r, -),
     get_all_item_location(-),
-    get_product_type(r, -)
+    get_product_type(r, -),
+    get_items_of_product_type(r, -, -)
     ]).
 
 :- use_module(library('semweb/rdf_db'),
@@ -199,3 +200,10 @@ get_product_type(Gtin, ProductType) :-
     has_description(Desc,value(shop:articleNumberOfProduct,ArticleNumber)),
     subclass_of(ProductType, Desc),
     subclass_of(ProductType, shop:'Product').
+
+get_items_of_product_type(ProductType, Items, Pose) :-
+    findall(Item, 
+        (instance_of(Item, ProductType),
+        subclass_of(ProductType, shop:'Product'),
+        is_at(Item, Pose)),
+    Items).

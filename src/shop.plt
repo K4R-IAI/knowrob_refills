@@ -27,6 +27,7 @@
     %   belief_shelf_barcode_at(r,r,+,+,-,+),
     %   product_spawn_front_to_back(r,r),
     %   product_spawn_front_to_back(r,r,r),
+:- begin_tests('shop').
 
 test('create an article number'):-
     X = 'GTIN_2344768595340257',
@@ -92,4 +93,4 @@ test('debug cycle') :-
     
     shelf_layer_find_facing_at(X, -0.029, Facing).
 
-:- end_tripledb_tests(shop).
+:- end_tests(shop).

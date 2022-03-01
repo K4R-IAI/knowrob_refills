@@ -2,11 +2,12 @@
 :- use_module(library('shop')).
 :- use_module(library('refills')).
 :- use_module(library(statistics)).
+:- use_module(library('db/tripledb'), [tripledb_load/1]).
 
 :- tripledb_load('package://knowrob_stocktaking/owl/shop-test.owl').
 :- tripledb_load('package://knowrob_stocktaking/owl/product-catalog.owl').
 
-:- begin_tests(refills).
+:- begin_tests('refill').
 
 frame1('http://knowrob.org/kb/shop-test.owl#DMShelfFrameFrontStore_5gKS').
 frame2('http://knowrob.org/kb/shop-test.owl#DMShelfFrameFrontStore_Bnc8').
@@ -51,4 +52,4 @@ test(shelf_spawn_mounting_bars) :-
     shelf_layer_spawn(Layer, dmshop:'DMShelfMountingBar', 1.0, _)
   )).
 
-:- end_tests(refills).
+:- end_tests(refill).

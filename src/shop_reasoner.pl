@@ -135,7 +135,7 @@ get_pose_in_desired_reference_frame(Object, Frame, Translation, Rotation) :-
     rdf_split_url(_, FrameName, Frame),
     is_at(Object, [FrameName, Translation, Rotation]).
 
-get_pose_in_desired_reference_frame(Object, FrameName, Translation, Rotation) :-
+get_pose_in_desired_reference_frame(_, _, _, _) :-
     print_message(warning, 'Pass an appropriate reference frame. The error could also be due to the object having no pose asserted').
 
 %% get_model_path(?Object, ?Path)
@@ -169,6 +169,7 @@ get_product_location(ProductType, Item, Shelf, ShelfLayer, Facing) :-
 get_all_item_location(Location) :-
     findall([Item, ['map',T, R]],
         (triple(Facing, shop:productInFacing, Item),
+        has_type(Facing, shop:'ProductFacing'),
         is_at(Item, ['map', T, R])),
     Location).
     
@@ -178,7 +179,8 @@ get_all_item_location(Location) :-
 % Gives the item type.
 %
 get_item_type(Item, Type) :-
-    has_type(Item, Type).
+    has_type(Item, Type),
+    subclass_of(Type, shop:'Product').
 
 %% get_product_gtin_dan(?Product, ?Gtin)
 %

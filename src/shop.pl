@@ -1493,7 +1493,7 @@ assert_layer_id(Shelf) :-
   ).
 
 assert_facing_id(Layer) :-
-  findall([Y, F],
+  findall([X, F],
           (triple(F, shop:layerOfFacing, Layer),
           rdf_split_url(_, Frame, Layer),
           is_at(F, [Frame, [X, _ ,_], _])),

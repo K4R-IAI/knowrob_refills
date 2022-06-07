@@ -1478,7 +1478,8 @@ assert_layer_id(Shelf) :-
   findall([Z, Layer],
         (
         triple(Shelf, soma:hasPhysicalComponent, Layer),
-        is_at(Layer, ['map', [_,_,Z], _]),
+        rdf_split_url(_, Frame, Shelf),
+        is_at(Layer, [Frame, [_,_,Z], _]),
         assert_facing_id(Layer)
         ),
         Layers),
@@ -1494,13 +1495,14 @@ assert_layer_id(Shelf) :-
 assert_facing_id(Layer) :-
   findall([Y, F],
           (triple(F, shop:layerOfFacing, Layer),
-          is_at(F, ['map', [_,Y,_], _])),
+          rdf_split_url(_, Frame, Layer),
+          is_at(F, [Frame, [X, _ ,_], _])),
           Facings),
   sort(Facings, SortedFacings),
   forall(
-    (member([Y, F], SortedFacings)),
+    (member([X, F], SortedFacings)),
     (
-    nth1(Id, SortedFacings, [Y, F]),
+    nth1(Id, SortedFacings, [X, F]),
     tell(holds(F, shop:erpFacingId, Id)))
   ).
 

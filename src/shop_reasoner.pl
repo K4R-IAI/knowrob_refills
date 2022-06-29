@@ -199,8 +199,9 @@ get_product_dan(Product, Dan) :-
 get_product_type(Gtin, ProductType) :-
     atom_number(Gtin_atom, Gtin),
     triple(ArticleNumber, shop:gtin, Gtin_atom),
+    triple(Desc, owl:hasValue, ArticleNumber),
+    triple(Desc, owl:onProperty, shop:articleNumberOfProduct),
     has_type(Desc, owl:'Restriction'),
-    has_description(Desc,value(shop:articleNumberOfProduct,ArticleNumber)),
     subclass_of(ProductType, Desc),
     subclass_of(ProductType, shop:'Product').
 

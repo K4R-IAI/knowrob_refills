@@ -197,7 +197,7 @@ get_product_dan(Product, Dan) :-
     triple(ArticleNumber, shop:dan, Dan).
 
 get_product_type(Gtin, ProductType) :-
-    atom_number(Gtin_atom, Gtin),
+    (number(Gtin) -> atom_number(Gtin_atom, Gtin); Gtin_atom is Gtin),
     triple(ArticleNumber, shop:gtin, Gtin_atom),
     triple(Desc, owl:hasValue, ArticleNumber),
     triple(Desc, owl:onProperty, shop:articleNumberOfProduct),

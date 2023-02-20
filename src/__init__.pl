@@ -32,12 +32,11 @@
 :- register_ros_package(knowrob_stocktaking).
 
 :- use_module(library('shop')).
-:- use_module(library('refills')).
+# :- use_module(library('refills')).
 :- use_module(library('shop_reasoner')).
 
 
-:- use_module(library('db/tripledb'), 
-              [tripledb_load/2, tripledb_load/1]).
+:- use_module(library('db/tripledb'), [tripledb_load/2, tripledb_load/1]).
 
 :- tripledb_load(
     'package://knowrob_stocktaking/owl/shop.owl',
